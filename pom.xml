@@ -6,6 +6,8 @@
   <inceptionYear>2008</inceptionYear>
   <properties>
     <scala.version>2.11.0</scala.version>
+    <spark.core.version>2.4.5</spark.core.version>
+    <maven.scala.plugin.version>2.15.2</maven.scala.plugin.version>
   </properties>
 
   <repositories>
@@ -25,6 +27,16 @@
   </pluginRepositories>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-core_2.11</artifactId>
+      <version>${spark.core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-hive_2.11</artifactId>
+      <version>${spark.core.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-library</artifactId>
@@ -68,7 +80,7 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-eclipse-plugin</artifactId>
+        <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
           <downloadSources>true</downloadSources>
           <buildcommands>

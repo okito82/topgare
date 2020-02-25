@@ -1,0 +1,26 @@
+<workflow-app name="Firstjob" xmlns="uri:oozie:workflow:0.5">
+    <global>
+        <job-tracker>yarn-cluster</job-tracker>
+        <name-node>hdfs://quickstart.cloudera:8020</name-node>
+        <configuration>
+            <property>
+                <name>mapreduce.job.queuename</name>
+            </property>
+        </configuration>
+    </global>
+
+    <start to = "Runjobspark"/>
+
+    <action name = "Runjobspark">
+        <sparkc xmlns="uri:oozie:spark-action:0.2">
+            <master>yarn</master>
+            <mode>cluster</mode>
+            <name>myjob</name>
+            <class>org.banque</class>
+            <jar>app/jobspark/topgare-1.0-SNAPSHOT.jar</jar>
+        </sparkc>
+        <ok to="end"/>
+        <error to="kill"/>
+    </action>
+
+</workflow-app>

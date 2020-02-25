@@ -1,4 +1,4 @@
-package org.example
+package org
 
 import org.junit._
 import Assert._
