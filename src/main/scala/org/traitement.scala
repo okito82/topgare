@@ -13,7 +13,7 @@ import org.apache.spark.sql.types.{StringType, StructField, StructType}
 import org.apache.spark.sql.functions._
 
 // TODO: modif2 
-object traitement extends  App {
+object traitement extends  App { //TODO: modif33
 
   val logger = LogManager.getLogger("Traitement**********************************************************************")
 
