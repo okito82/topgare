@@ -13,8 +13,8 @@ import org.apache.spark.sql.types.{StringType, StructField, StructType}
 import org.apache.spark.sql.functions._
 
 // TODO: modif2 
-object traitement extends  App { //TODO: modif33
-
+object traitement extends  App {
+//TODO modif 44
   val logger = LogManager.getLogger("Traitement**********************************************************************")
 
  def frequentationGare(/*Path_int_data_frequentation: String,*/ sparkSession: SparkSession, fs: FileSystem): Unit = {
