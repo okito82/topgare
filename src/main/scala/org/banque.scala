@@ -12,8 +12,8 @@ import scala.reflect.macros.whitebox
 =======
 >>>>>>> origin/master
 /**
- * Hello world! correction
- * maitre
+ * Hello world! correction 2
+ *
  */
 object banque  extends App {
 
