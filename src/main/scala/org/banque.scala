@@ -16,7 +16,7 @@ import scala.reflect.macros.whitebox
  *
  */
 object banque  extends App {
-
+  // TODO: modif 44 
     val logger = LogManager.getLogger("AnalystTopGare*********************************************************")
     val sparkSession = ApplicationContext.getSparkSession("TopGare")
 

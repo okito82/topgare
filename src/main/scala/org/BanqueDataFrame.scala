@@ -6,7 +6,7 @@ import org.banque.sparkSession
 // TODO: modf3 
 
 object BanqueDataFrame {
-
+//TODO modif 44
   val clientSchema = StructType(
     Array(
       StructField("no_client", IntegerType, nullable = true),
