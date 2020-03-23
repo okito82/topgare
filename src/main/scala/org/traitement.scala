@@ -5,7 +5,10 @@ import java.util.Calendar
 import org.apache.hadoop.fs.FileSystem
 import org.apache.log4j.LogManager
 import org.apache.spark.sql.SparkSession
+<<<<<<< HEAD
 import org.apache.spark.sql.SQLImplicits
+=======
+>>>>>>> origin/master
 import org.apache.spark.sql.types.{StringType, StructField, StructType}
 import org.apache.spark.sql.functions._
 
