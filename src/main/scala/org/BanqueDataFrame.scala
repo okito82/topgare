@@ -3,6 +3,8 @@ package org
 import org.apache.spark.sql.types.{DateType, IntegerType, StringType, StructField, StructType}
 import org.banque.sparkSession
 
+// TODO: modf3 
+
 object BanqueDataFrame {
 
   val clientSchema = StructType(
