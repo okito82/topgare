@@ -2,10 +2,11 @@ package org
 
 import org.apache.spark.sql.types.{DateType, IntegerType, StringType, StructField, StructType}
 import org.banque.sparkSession
+import com.fasterxml.jackson.annotation.JsonProperty
 
-// TODO: modf3 
 
-object BanqueDataFrame { //TODO: 33
+
+object BanqueDataFrame {
 
   val clientSchema = StructType(
     Array(
@@ -22,7 +23,7 @@ object BanqueDataFrame { //TODO: 33
     .schema(clientSchema)
     .load("src/main/resources/client.csv")
 
-  val comptetSchema = StructType(
+  /*val comptetSchema = StructType(
     Array(
       StructField("no_compte", IntegerType, nullable = true),
       StructField("solde", IntegerType, nullable = true),
@@ -63,6 +64,8 @@ object BanqueDataFrame { //TODO: 33
     .option("inferSchema", "true")
     .option("header", "true")
     .load("src/main/resources/portefeuille.csv")
+    */
+
 
 
 }
