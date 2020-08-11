@@ -31,4 +31,6 @@ object TestJackson extends App {
  val tes = mapper.readValue(list_column, classOf[Map[String, String]])
 
   println(tes)
+  val list = List("okio","lutula")
+  list.re
 }
