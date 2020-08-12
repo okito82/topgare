@@ -21,7 +21,7 @@ object BanqueDataFrame {
     .option("sep", ",")
     .option("inferSchema", "true")
     .schema(clientSchema)
-    .load("src/main/resources/client.csv")
+    .load("src/main/resources/01/client.csv")
 
   /*val comptetSchema = StructType(
     Array(

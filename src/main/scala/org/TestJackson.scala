@@ -32,5 +32,5 @@ object TestJackson extends App {
 
   println(tes)
   val list = List("okio","lutula")
-  list.re
+  //list.re
 }

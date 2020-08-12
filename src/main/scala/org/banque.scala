@@ -6,16 +6,16 @@ import org.apache.spark.sql.functions.col
 import org.apache.spark.sql.functions._
 
 
-object banque  extends App {
+object banque extends App {
 
   println("okito")
 
-    val logger = LogManager.getLogger("AnalystTopGare*********************************************************")
+    //val logger = LogManager.getLogger("AnalystTopGare*********************************************************")
     val sparkSession = ApplicationContext.getSparkSession("TopGare")
 
 
   /* Nom et mel de tous les clients */
-  //clientDF.select("nom","email").show()
+  clientDF.select("nom","email").show()
 
   /* Date d'attribution sans doublon */
   //portefeuilleDF.select("no_client").show()
@@ -24,7 +24,7 @@ object banque  extends App {
   //clientDF.select(length(col("email"))).show()
 
 
-  clientDF.withColumn("nn",when(col("no_client") === 1,1).otherwise(0)).show()
+  //clientDF.withColumn("nn",when(col("no_client") === 1,1).otherwise(0)).show()
 
 
   //compteDF.show()
