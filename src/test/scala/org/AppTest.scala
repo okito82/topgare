@@ -2,30 +2,31 @@ package org
 
 import org.junit._
 import Assert._
-
+import org.UDF.{somme, udfTest}
 import org.scalatest.funsuite.AnyFunSuite
 
 
-class AppTest {
+class AppTest  {
   val sparkSession = ApplicationContext.getSparkSession("TopGare")
   import sparkSession.implicits._
+  val list = Seq(
+    ("A","B"),
+    ("B","B"),
+    ("B","A"),
+    ("A","A"),
+    ("A","B"),
+    ("B","B")
+  )
 
   @Test
   def testOK() {
 
-    val list = Seq(
-      ("A","2019-07-28","okit"),
-      ("A","2019-07-28","okit"),
-      ("A","2019-07-28","okit"),
-      ("A","2019-07-28","okit"),
-      ("A","2019-07-28","okit"),
-      ("A","2019-07-28","okit")
-    )
-    val df = list.toDF("Borne","Date","personne")
-     // .withColumn("")
+    val df = list.toDF("Borne","Date")
+      .withColumn("ckck",udfTest('Borne,'Date))
     df.show()
 
-  assertTrue (true)
+  assertTrue (somme("A","A") == "gagner")
+ //assertTrue (somme("A","A") == "perdu")
 }
 
 //    @Test

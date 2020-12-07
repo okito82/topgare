@@ -1,12 +1,13 @@
 package org
 
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
-import com.fasterxml.jackson.databind.ObjectMapper
-
+import com.fasterxml.jackson.databind.{DeserializationFeature, ObjectMapper}
 import scala.util.Try
+import java.io._
+import scala.reflect.{ClassTag, classTag}
 
 
-object TestJackson extends App {
+object TestJackson  {
 
 
   def fromResource(fileName: String): Try[String] = {
@@ -16,21 +17,19 @@ object TestJackson extends App {
       scala.io.Source.fromInputStream(file).getLines.mkString("\n")
     }
   }
-  //scala.io.Source.fromInputStream()
 
-  val  list_column = scala.io.Source.fromFile("src/main/resources/DataJson").mkString//fromResource("src/main/resources/Datajson.json").mk
-  println(list_column)
-
-  val data = """
-    {"some": "json data"}
-"""
+  val  list_column = scala.io.Source.fromFile("src/main/resources/01/list_table.json").mkString
 
   val mapper = new ObjectMapper
 
   mapper.registerModule(DefaultScalaModule)
- val tes = mapper.readValue(list_column, classOf[Map[String, String]])
+  mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
-  println(tes)
-  val list = List("okio","lutula")
-  //list.re
+
+  @throws(classOf[IOException])
+  def toMyclass[T: ClassTag](jsonContent: String): T = {
+    mapper.readValue[T](jsonContent, classTag[T].runtimeClass.asInstanceOf[Class[T]])
+  }
+
+
 }

@@ -1,0 +1,18 @@
+{
+  "columns-list": {
+    "table-client": {
+      "nom": "",
+      "email": ""
+    },
+    "voiture": {
+      "marque": "",
+      "anne": "",
+      "pays": "",
+      "adresse": ""
+    },
+    "client2": {
+      "nom": "",
+      "email": ""
+    }
+  }
+}

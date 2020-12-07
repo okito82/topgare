@@ -1,8 +1,8 @@
 {
-  "id": 1,
-  "itemName": "theItem",
-  "owner": {
-    "id": 2,
+  "nom": "lutula",
+  "prenom": "okito",
+  "enfant": {
+    "nombre": 2,
     "name": "theUser"
   }
 }

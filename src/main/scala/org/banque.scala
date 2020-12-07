@@ -2,32 +2,35 @@ package org
 
 import org.apache.log4j.LogManager
 import org.BanqueDataFrame._
+import org.TestJackson.{list_column, toMyclass}
 import org.apache.spark.sql.functions.col
-import org.apache.spark.sql.functions._
 
 
-object banque extends App {
 
-  println("okito")
+object banque  {
 
-    //val logger = LogManager.getLogger("AnalystTopGare*********************************************************")
-    val sparkSession = ApplicationContext.getSparkSession("TopGare")
+   val sparkSession = ApplicationContext.getSparkSession("TopGare")
 
+  def main(args: Array[String]): Unit = {
+    //val sparkSession = ApplicationContext.getSparkSession("TopGare")
 
-  /* Nom et mel de tous les clients */
-  clientDF.select("nom","email").show()
-
-  /* Date d'attribution sans doublon */
-  //portefeuilleDF.select("no_client").show()
-
-  /* Longueur du email des clients (fonction chaine) */
-  //clientDF.select(length(col("email"))).show()
+    val logger = LogManager.getLogger("AnalystTopGare*********************************************************")
 
 
-  //clientDF.withColumn("nn",when(col("no_client") === 1,1).otherwise(0)).show()
+
+    import sparkSession.implicits._
+
+    val list_col = toMyclass[tools.ColumnList](list_column).getColumnsByTableName("client2")
 
 
-  //compteDF.show()
+    clientDF.select(list_col.map(c => col(c)):_*).show()
+  }
+  //val sparkSession = ApplicationContext.getSparkSession("TopGare")
+
+   // val logger = LogManager.getLogger("AnalystTopGare*********************************************************")
+
+
+
 
 
 
