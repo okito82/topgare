@@ -21,7 +21,6 @@ object TestJackson  {
   val  list_column = scala.io.Source.fromFile("src/main/resources/01/list_table.json").mkString
 
   val mapper = new ObjectMapper
-
   mapper.registerModule(DefaultScalaModule)
   mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 

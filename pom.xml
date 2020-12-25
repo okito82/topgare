@@ -26,7 +26,60 @@
     </pluginRepository>
   </pluginRepositories>
 
+
   <dependencies>
+
+    <dependency>
+      <groupId>com.github.sakserv</groupId>
+      <artifactId>hadoop-mini-clusters-hivemetastore</artifactId>
+      <version>0.1.16</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sakserv</groupId>
+      <artifactId>hadoop-mini-clusters-hiveserver2</artifactId>
+      <version>0.1.16</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sakserv</groupId>
+      <artifactId>hadoop-mini-clusters-kafka</artifactId>
+      <version>0.1.16</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sakserv</groupId>
+      <artifactId>hadoop-mini-clusters-hbase</artifactId>
+      <version>0.1.16</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sakserv</groupId>
+      <artifactId>hadoop-mini-clusters-yarn</artifactId>
+      <version>0.1.16</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sakserv</groupId>
+      <artifactId>hadoop-mini-clusters-common</artifactId>
+      <version>0.1.16</version>
+    </dependency>
+    <dependency>
+      <groupId>com.typesafe</groupId>
+      <artifactId>config</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sakserv</groupId>
+      <artifactId>hadoop-mini-clusters-hdfs</artifactId>
+      <version>0.1.16</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-client</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-minicluster</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
@@ -37,7 +90,7 @@
       <artifactId>spark-core_2.11</artifactId>
       <version>${spark.core.version}</version>
     </dependency>
-    <dependency>
+   <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-hive_2.11</artifactId>
       <version>${spark.core.version}</version>
@@ -68,6 +121,7 @@
       <plugin>
         <groupId>org.scala-tools</groupId>
         <artifactId>maven-scala-plugin</artifactId>
+
         <executions>
           <execution>
             <goals>
@@ -83,7 +137,7 @@
           </args>
         </configuration>
       </plugin>
-      <plugin>
+    <!--  <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
@@ -99,7 +153,33 @@
             <classpathContainer>ch.epfl.lamp.sdt.launching.SCALA_CONTAINER</classpathContainer>
           </classpathContainers>
         </configuration>
+      </plugin> -->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.5.3</version>
+        <executions>
+          <execution>
+            <id>bin-dev</id>
+            <phase>install</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <filters>
+                <filter>${basedir}/src/main/resources/dev.properties</filter>
+              </filters>
+              <finalName>${project.artifactId}-${project.version}-dev</finalName>
+              <descriptors>
+                <descriptor>src/main/resources/bin.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
+
+
     </plugins>
   </build>
   <reporting>

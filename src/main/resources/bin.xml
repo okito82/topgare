@@ -1,0 +1,29 @@
+<assembly>
+    <id>bin</id>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+    <baseDirectory>${project.artifactId}-${project.version}</baseDirectory>
+
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/src/main/resources/01</directory>
+            <outputDirectory>/apps/data/</outputDirectory>
+            <includes>
+                <include>*.csv</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+
+    <files>
+        <file>
+            <source>${basedir}/src/main/bash/deploy.sh</source>
+            <outputDirectory></outputDirectory>
+            <destName>deploy.sh</destName>
+            <filtered>true</filtered>
+            <lineEnding>unix</lineEnding>
+        </file>
+    </files>
+
+</assembly>

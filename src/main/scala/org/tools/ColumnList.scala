@@ -1,14 +1,16 @@
 package org.tools
 
-
 import com.fasterxml.jackson.annotation.JsonProperty
-
 import scala.collection.mutable.LinkedHashMap
 
 case class ColumnList(@JsonProperty("columns-list") getMapColumns : Map[String, LinkedHashMap[String,String] ]){
-
+/*
   def getColumnsByTableName(tableName: String): List[String] = {
     getMapColumns(tableName).keys.toList
+  }
+ */
+  def getColumnsByTableName(tableName: String): LinkedHashMap[String,String] = {
+    getMapColumns(tableName)
   }
 
   def getOrderRenamedColumn(myList: Seq[String]): List [String] = {
@@ -20,12 +22,14 @@ case class ColumnList(@JsonProperty("columns-list") getMapColumns : Map[String, 
       columnList
 
   }
-
+/*
   def getOrderColumns(myList : Seq[String]): List[String] = {
     val columnList = myList.flatMap(table => getColumnsByTableName(table)).toList
     println(s" Columns List : \n\t ${columnList.mkString(" -")}")
       columnList
   }
+
+ */
 
   def renamingColumns(tableName: String): Seq[String] = {
     val columnsMap = getMapColumns(tableName)

@@ -1,0 +1,29 @@
+{
+  "type": "struct",
+  "fields": [
+    {
+      "name": "ID_CONTRACT",
+      "type": "varchar(23)",
+      "nullable": true,
+      "metadata": {}
+    },
+    {
+      "name": "ID_FACILITY",
+      "type": "varchar(23)",
+      "nullable": true,
+      "metadata": {}
+    },
+    {
+      "name": "ID_CTR",
+      "type": "varchar(64)",
+      "nullable": false,
+      "metadata": {}
+    },
+    {
+      "name": "ID_CLT",
+      "type": "varchar(64)",
+      "nullable": false,
+      "metadata": {}
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "columns-list": {
     "table-client": {
-      "nom": "",
-      "email": ""
+      "nom": "int",
+      "email": "string"
     },
     "voiture": {
       "marque": "",
@@ -10,9 +10,10 @@
       "pays": "",
       "adresse": ""
     },
-    "client2": {
-      "nom": "",
-      "email": ""
+    "table2": {
+      "database": "int",
+      "nameTable": "string",
+      "listReadCol": "col1,col2,col3"
     }
   }
 }

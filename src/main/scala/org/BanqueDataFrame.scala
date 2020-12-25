@@ -4,6 +4,8 @@ import org.apache.spark.sql.types.{DateType, IntegerType, StringType, StructFiel
 import org.banque.sparkSession
 import com.fasterxml.jackson.annotation.JsonProperty
 
+import scala.reflect.runtime.universe.Quasiquote
+
 
 
 object BanqueDataFrame {

@@ -3,11 +3,9 @@ package org
 
 import org.apache.spark.sql.expressions.UserDefinedFunction
 import org.apache.spark.sql.functions.udf
-import org.apache.spark.sql.types.StringType
+
 
 object UDF {
-
-
 
   def somme(pileA : String, pileB: String): String = {
     (pileA,pileB) match {
