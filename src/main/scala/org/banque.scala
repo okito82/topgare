@@ -1,11 +1,16 @@
 package org
 
+import java.util.Properties
+import avro.shaded.com.google.common.collect.Lists
 import com.github.sakserv.minicluster.impl.YarnLocalCluster
+import javafx.beans.property.Property
 import org.TestJackson.{list_column, toMyclass}
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{FileSystem, Path}
 import org.apache.log4j.LogManager
 import org.apache.spark.sql.catalyst.analysis.EliminateView.conf
+import org.datanucleus._
+
 
 
 
@@ -70,7 +75,7 @@ object banque  {
     // val logger = LogManager.getLogger("AnalystTopGare*********************************************************")
 
 */
-    /*
+
 
     import com.github.sakserv.minicluster.impl.HdfsLocalCluster
     val hdfsLocalCluster = new HdfsLocalCluster.Builder()
@@ -90,17 +95,19 @@ object banque  {
     val conf = new Configuration()
     val fs= FileSystem.get(conf)
 
-
+/*
     conf.set("fs.defaultFS", "hdfs://127.0.0.1:12345")
 
     fs.create(new Path("/tmp/mySample.txt"))
 
     println("okok")
 
-     */
+ */
 
 
-/*
+
+
+
     val yarnLocalCluster = new YarnLocalCluster.Builder()
       .setNumNodeManagers(1)
       .setNumLocalDirs(1)
@@ -116,18 +123,31 @@ object banque  {
 
     yarnLocalCluster.start();
 
- */
 
 
-    /*
+    import com.github.sakserv.minicluster.impl.ZookeeperLocalCluster
+    val zookeeperLocalCluster = new ZookeeperLocalCluster.Builder()
+      .setPort(12346)
+      .setTempDir("embedded_zookeeper")
+      .setZookeeperConnectionString("localhost:12346")
+      .setMaxClientCnxns(60)
+      .setElectionPort(20001)
+      .setQuorumPort(20002)
+      .setDeleteDataDirectoryOnClose(false).setServerId(1).setTickTime(2000).build
+
+    zookeeperLocalCluster.start()
+
+
+/*
+
     import com.github.sakserv.minicluster.impl.HbaseLocalCluster
     val hbaseLocalCluster = new HbaseLocalCluster.Builder()
       .setHbaseMasterPort(25111)
       .setHbaseMasterInfoPort(-1)
       .setNumRegionServers(1)
       .setHbaseRootDir("embedded_hbase")
-      .setZookeeperPort(12345)
-      .setZookeeperConnectionString("localhost:12345")
+      .setZookeeperPort(12346)
+      .setZookeeperConnectionString("localhost:12346")
       .setZookeeperZnodeParent("/hbase-unsecure")
       .setHbaseWalReplicationEnabled(false)
       .setHbaseConfiguration(new Configuration())
@@ -142,22 +162,60 @@ object banque  {
 
     hbaseLocalCluster.start()
 
-     */
+ */
+
+
+
+
+    //hiveLocalServer2.start()
+/*
+    import com.github.sakserv.minicluster.impl.HiveLocalMetaStore
+    import org.apache.hadoop.hive.conf.HiveConf
+    val hiveLocalMetaStore = new HiveLocalMetaStore.Builder()
+      .setHiveMetastoreHostname("localhost")
+      .setHiveMetastorePort(12347)
+      .setHiveMetastoreDerbyDbDir("metastore_db")
+      .setHiveScratchDir("hive_scratch_dir")
+      .setHiveWarehouseDir("warehouse_dir")
+      .setHiveConf(new HiveConf).build
+
+    hiveLocalMetaStore.start()
+
+ */
+
 
     import com.github.sakserv.minicluster.impl.KafkaLocalBroker
     val kafkaLocalBroker = new KafkaLocalBroker.Builder()
       .setKafkaHostname("localhost")
       .setKafkaPort(11111)
-      .setKafkaBrokerId(0)
-      .setKafkaProperties(new Configuration())
+      .setKafkaBrokerId(1)
+      .setKafkaProperties(new Properties)
       .setKafkaTempDir("embedded_kafka")
-      .setZookeeperConnectionString("localhost:12345")
+      .setZookeeperConnectionString("localhost:12346")
       .build
 
     kafkaLocalBroker.start()
 
 
+
+
+/*
+    import com.github.sakserv.minicluster.impl.HiveLocalMetaStore
+    import org.apache.hadoop.hive.conf.HiveConf
+    val hiveLocalMetaStore = new HiveLocalMetaStore.Builder()
+      .setHiveMetastoreHostname("localhost")
+      .setHiveMetastorePort(12347)
+      .setHiveMetastoreDerbyDbDir("metastore_db")
+      .setHiveScratchDir("hive_scratch_dir")
+      .setHiveWarehouseDir("warehouse_dir")
+      .setHiveConf(new HiveConf).build
+
+    hiveLocalMetaStore.start()
+ */
+
+
     /*
+
     import com.github.sakserv.minicluster.impl.HiveLocalServer2
     import org.apache.hadoop.hive.conf.HiveConf
     val hiveLocalServer2 = new HiveLocalServer2.Builder()
@@ -169,28 +227,14 @@ object banque  {
       .setHiveScratchDir("hive_scratch_dir")
       .setHiveWarehouseDir("warehouse_dir")
       .setHiveConf(new HiveConf)
-      .setZookeeperConnectionString("localhost:12345").build
-
+      .setZookeeperConnectionString("localhost:12346").build
 
     hiveLocalServer2.start()
 
      */
-    /*
-    import com.github.sakserv.minicluster.impl.HiveLocalMetaStore
-    import org.apache.hadoop.hive.conf.HiveConf
-    val hiveLocalMetaStore = new HiveLocalMetaStore.Builder().setHiveMetastoreHostname("localhost").setHiveMetastorePort(12347).setHiveMetastoreDerbyDbDir("metastore_db").setHiveScratchDir("hive_scratch_dir").setHiveWarehouseDir("warehouse_dir").setHiveConf(new HiveConf).build
 
-    hiveLocalMetaStore.start()
 
-     */
-    //import com.github.sakserv.minicluster.impl.OozieLocalServer
-    //import com.github.sakserv.minicluster.oozie.sharelib.Framework
-    //val oozieLocalServer = new OozieLocalServer.Builder().setOozieTestDir("embedded_oozie").setOozieHomeDir("oozie_home").setOozieUsername(System.getProperty("user.name")).setOozieGroupname("testgroup").setOozieYarnResourceManagerAddress("localhost").setOozieHdfsDefaultFs("hdfs://localhost:8020/").setOozieConf(new Nothing).setOozieHdfsShareLibDir("/tmp/oozie_share_lib").setOozieShareLibCreate(true).setOozieLocalShareLibCacheDir("share_lib_cache").setOoziePurgeLocalShareLibCache(false).setOozieShareLibFrameworks(List(Framework.MAPREDUCE_STREAMING, Framework.OOZIE)).build
 
-    //val oozieShareLibUtil = new OozieShareLibUtil(oozieLocalServer.getOozieHdfsShareLibDir, oozieLocalServer.getOozieShareLibCreate, oozieLocalServer.getOozieLocalShareLibCacheDir, oozieLocalServer.getOoziePurgeLocalShareLibCache, hdfsLocalCluster.getHdfsFileSystemHandle, oozieLocalServer.getOozieShareLibFrameworks)
-    //oozieShareLibUtil.createShareLib()
-
-   // oozieLocalServer.start()
 
 
 

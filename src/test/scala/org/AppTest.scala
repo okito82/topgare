@@ -1,4 +1,4 @@
-package org
+/* package org
 
 import org.junit._
 import Assert._
@@ -52,4 +52,6 @@ class AppTest  {
 
 }
 
+
+ */
 

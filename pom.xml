@@ -28,6 +28,20 @@
 
 
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/net.alchim31.maven/scala-maven-plugin -->
+    <dependency>
+      <groupId>net.alchim31.maven</groupId>
+      <artifactId>scala-maven-plugin</artifactId>
+      <version>4.4.0</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>com.github.sakserv</groupId>
+      <artifactId>hadoop-mini-clusters-zookeeper</artifactId>
+      <version>0.1.16</version>
+    </dependency>
 
     <dependency>
       <groupId>com.github.sakserv</groupId>
@@ -87,12 +101,12 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-core_2.11</artifactId>
+      <artifactId>spark-core_2.12</artifactId>
       <version>${spark.core.version}</version>
     </dependency>
    <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-hive_2.11</artifactId>
+      <artifactId>spark-hive_2.12</artifactId>
       <version>${spark.core.version}</version>
     </dependency>
     <dependency>
@@ -116,11 +130,13 @@
 
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
+   <!-- <sourceDirectory>src/main/Java</sourceDirectory> -->
     <testSourceDirectory>src/test/scala</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.scala-tools</groupId>
         <artifactId>maven-scala-plugin</artifactId>
+        <version>2.15.2</version>
 
         <executions>
           <execution>
@@ -187,6 +203,7 @@
       <plugin>
         <groupId>org.scala-tools</groupId>
         <artifactId>maven-scala-plugin</artifactId>
+        <version>2.15.2</version>
         <configuration>
           <scalaVersion>${scala.version}</scalaVersion>
         </configuration>
